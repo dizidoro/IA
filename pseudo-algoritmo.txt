@@ -1,0 +1,19 @@
+Pseudo algoritmo
+
+informa coluna, cor(jogador)
+preenche celula respectiva
+boolean verificar vitoria
+	pra cada direçao(no máximo 3 pra "frente" e 3 pra "trás")
+		pega lista de celulas
+		verifica se há 4 conectados (lista)
+			contador
+			pega cor jogada
+			para cada celula da lista
+				se é da cor
+					contador += 1
+				se nao
+					contador = 0
+
+			se contador => 4
+				retorna verdade 
+	retorna falso
