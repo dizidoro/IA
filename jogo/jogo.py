@@ -7,19 +7,31 @@ Created on Mar 25, 2014
 
 from tabuleiro import Tabuleiro
 from cor import Cor
+from jogada import Jogada
 import game_input
 
 def main():
     tabuleiro = Tabuleiro(6, 7)
 
     jogador_atual = game_input.solicitarJogadorIniciante()
-
-    while True :
-        print "\n", tabuleiro
+    jogoNaoAcabou = True
+    print "\n", tabuleiro
+    while jogoNaoAcabou:
+        print "Vez do jogador", jogador_atual
 
         coluna = game_input.solicitarColuna()
-        tabuleiro.inserirPeca(coluna, jogador_atual)
+        linha = tabuleiro.inserirPeca(coluna, jogador_atual)
         
+        jogada = Jogada(linha, coluna, jogador_atual)
+        jogadaVitoriosa = tabuleiro.verificarVitoria(jogada)
+
+        print "linha, coluna: ", str(linha) + "," + str(coluna)
+        print "\n", tabuleiro
+
+        if jogadaVitoriosa:
+            print "Parabens jogador",jogador_atual,"voce ganhou!"
+            jogoNaoAcabou = False
+
         jogador_atual = Cor.VERMELHO if jogador_atual is Cor.AZUL else Cor.AZUL
 
 if __name__ == '__main__':
