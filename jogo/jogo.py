@@ -14,23 +14,23 @@ def main():
     tabuleiro = Tabuleiro(6, 7)
 
     jogador_atual = game_input.solicitarJogadorIniciante()
-    jogoNaoAcabou = True
+    jogo_nao_acabou = True
     print "\n", tabuleiro
-    while jogoNaoAcabou:
+    while jogo_nao_acabou:
         print "Vez do jogador", jogador_atual
 
         coluna = game_input.solicitarColuna()
         linha = tabuleiro.inserirPeca(coluna, jogador_atual)
         
         jogada = Jogada(linha, coluna, jogador_atual)
-        jogadaVitoriosa = tabuleiro.verificarVitoria(jogada)
+        jogada_vitoriosa = tabuleiro.verificarVitoria(jogada)
 
         print "linha, coluna: ", str(linha) + "," + str(coluna)
         print "\n", tabuleiro
 
         if jogadaVitoriosa:
             print "Parabens jogador",jogador_atual,"voce ganhou!"
-            jogoNaoAcabou = False
+            jogo_nao_acabou = False
 
         jogador_atual = Cor.VERMELHO if jogador_atual is Cor.AZUL else Cor.AZUL
 
