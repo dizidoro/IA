@@ -1,3 +1,4 @@
+#!/usr/bin/python
 '''
 Created on Mar 25, 2014
 
@@ -6,16 +7,20 @@ Created on Mar 25, 2014
 
 from tabuleiro import Tabuleiro
 from cor import Cor
+import game_input
 
-tabuleiro = Tabuleiro(6, 7)
+def main():
+    tabuleiro = Tabuleiro(6, 7)
 
-jogador = Cor.AZUL
-while(True):
-    coluna = int(raw_input("Digite a coluna para inserir uma peca"))
-    tabuleiro.inserirPeca(coluna, jogador)
-    if (jogador==Cor.AZUL):
-        jogador = Cor.VERMELHO
-    else:
-        jogador = Cor.AZUL
+    jogador_atual = game_input.solicitarJogadorIniciante()
+
+    while True :
+        print "\n", tabuleiro
+
+        coluna = game_input.solicitarColuna()
+        tabuleiro.inserirPeca(coluna, jogador_atual)
         
-    print tabuleiro
+        jogador_atual = Cor.VERMELHO if jogador_atual is Cor.AZUL else Cor.AZUL
+
+if __name__ == '__main__':
+    main()
