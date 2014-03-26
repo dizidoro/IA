@@ -17,8 +17,6 @@ class Tabuleiro:
     0,0 0,1 0,2 0,3 0,4 0,5 0,6
 
     '''
-    
-    celulas = []
 
     def __init__(self, linhas, colunas):
         self.celulas = [[Cor.BRANCO for _ in range(colunas)] for _ in range(linhas)]
@@ -32,15 +30,23 @@ class Tabuleiro:
     def verificarVitoria(self, jogador):
         return False
     
-    def verificarListaDeCelulas(self, lista, cor_do_jogador):
+    def verificarListaDeCelulas(self, lista, jogador):
         contador_iguais = 0
-        for cor_da_celula in lista:
-            if cor_da_celula is cor_do_jogador:
+        for celula in lista:
+            if celula is jogador:
                 contador_iguais += 1
             else:
                 contador_iguais = 0
         return contador_iguais >= 4
             
+    def diagonais():
+        a = np.array(self.celulas)
+        diags = [a[::-1,:].diagonal(i) for i in range(-a.shape[0]+1,a.shape[1])]
+        diags.extend(a.diagonal(i) for i in range(a.shape[1]-1,-a.shape[0],-1))
+        diagonais = [n.tolist() for n in diags]
+        return diagonais
+
+
     def __str__(self):
         string_tabuleiro = ""
         for linha in self.celulas:
