@@ -6,6 +6,7 @@ Created on Mar 25, 2014
 '''
 from cor import Cor
 from jogada import Jogada
+import numpy as np
 
 
 class Tabuleiro:
@@ -29,14 +30,22 @@ class Tabuleiro:
                 return indice
             
     def verificarVitoria(self, jogada):
-        #verificar linha
+        # verificar linha
         if self.listaTem4Conectados(self.celulas[jogada.linha], jogada.jogador):
             return True
-        #for linha in self.celulas
-        #verificar coluna
+        
+        # verificar coluna
+        coluna = []
+        for linha in self.celulas:
+            coluna.append(linha[jogada.coluna])
+        if self.listaTem4Conectados(coluna, jogada.jogador):
+            return True
 
-        #verificar diagonais
-        return False
+        # verificar diagonais
+        diagonais = self.obterDiagonais()
+        diagonal_principal = diagonais[jogada.linha + jogada.coluna]
+        diagona_secundaria = diagonais[len(diagonais) / 2 + jogada.linha + jogada.coluna]
+        return self.listaTem4Conectados(diagonal_principal, jogada.jogador) or self.listaTem4Conectados(diagona_secundaria, jogada.jogador)
     
     def listaTem4Conectados(self, lista, jogador):
         contador_iguais = 0
@@ -46,15 +55,15 @@ class Tabuleiro:
             else:
                 contador_iguais = 0
 
-            if contador_iguais >=4:
+            if contador_iguais >= 4:
                 return True
 
         return False
             
-    def diagonais():
+    def obterDiagonais(self):
         a = np.array(self.celulas)
-        diags = [a[::-1,:].diagonal(i) for i in range(-a.shape[0]+1,a.shape[1])]
-        diags.extend(a.diagonal(i) for i in range(a.shape[1]-1,-a.shape[0],-1))
+        diags = [a[::-1, :].diagonal(i) for i in range(-a.shape[0] + 1, a.shape[1])]
+        diags.extend(a.diagonal(i) for i in range(a.shape[1] - 1, -a.shape[0], -1))
         diagonais = [n.tolist() for n in diags]
         return diagonais
 

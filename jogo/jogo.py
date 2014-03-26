@@ -28,7 +28,7 @@ def main():
         print "linha, coluna: ", str(linha) + "," + str(coluna)
         print "\n", tabuleiro
 
-        if jogadaVitoriosa:
+        if jogada_vitoriosa:
             print "Parabens jogador",jogador_atual,"voce ganhou!"
             jogo_nao_acabou = False
 
