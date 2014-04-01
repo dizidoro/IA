@@ -4,10 +4,12 @@ Created on Mar 25, 2014
 @author: renan
 '''
 
-class Cor:
+class Jogador:
+
     
-    BRANCO = 0
-    AZUL = 1
-    VERMELHO = 2
+    VAZIO = 0
+    HUMANO = 1
+    COMPUTADOR = 2
+
         
         

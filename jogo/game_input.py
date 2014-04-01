@@ -13,7 +13,7 @@ def solicitarColuna():
 def solicitarJogadorIniciante():
     while True:
         try:
-            jogador = int(raw_input(u"Quem começa, jogador 1 ou 2? ".encode('utf-8')))
+            jogador = int(raw_input(u"Quem começa, jogador humano (1) ou computador (2)? ".encode('utf-8')))
             if 1 <= jogador <= 2:
                 return jogador
             else:

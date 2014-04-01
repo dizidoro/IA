@@ -6,7 +6,7 @@ Created on Mar 25, 2014
 '''
 
 from tabuleiro import Tabuleiro
-from cor import Cor
+from jogador import Jogador
 from jogada import Jogada
 import game_input
 
@@ -32,7 +32,7 @@ def main():
             print "Parabens jogador",jogador_atual,"voce ganhou!"
             jogo_nao_acabou = False
 
-        jogador_atual = Cor.VERMELHO if jogador_atual is Cor.AZUL else Cor.AZUL
+        jogador_atual = Jogador.HUMANO if jogador_atual is Jogador.COMPUTADOR else Jogador.COMPUTADOR
 
 if __name__ == '__main__':
     main()
