@@ -30,6 +30,7 @@ class Tabuleiro:
                 return indice
             
     def verificarVitoria(self, jogada):
+        # print jogada
         # verificar linha
         if Tabuleiro.listaTem4Conectados(self.celulas[jogada.linha], jogada.jogador):
             return True
@@ -70,7 +71,7 @@ class Tabuleiro:
         if vitoria:
             if jogada.jogador is Jogador.HUMANO:
                 utilidade -= fator_vitoria
-            else
+            else:
                 utilidade += fator_vitoria
 
         utilidade -= self.numeroDeTresDasQuatro(Jogador.HUMANO) * fator_3_de_quatro
@@ -131,6 +132,10 @@ class Tabuleiro:
 
     def __str__(self):
         string_tabuleiro = ""
-        for linha in self.celulas:
-            string_tabuleiro = str(linha) + "\n" + string_tabuleiro
+        string_tabuleiro += "\n   1 2 3 4 5 6 7" + "\n"
+        for indice, linha in enumerate(self.celulas):
+            linha_str = ""
+            for celula in linha:
+                linha_str += str(celula) + " "
+            string_tabuleiro = str(indice + 1) + "  "+ linha_str + "\n" + string_tabuleiro
         return string_tabuleiro

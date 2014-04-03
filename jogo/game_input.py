@@ -2,9 +2,9 @@
 def solicitarColuna():
     while True:
         try:
-            coluna = int(raw_input(u"Digite a coluna (intervalo [0,6]) para inserir uma peça: ".encode('utf-8')))
-            if 0 <= coluna <= 6:
-                return coluna
+            coluna = int(raw_input(u"Digite a coluna [1,7] para inserir uma peça: ".encode('utf-8')))
+            if 1 <= coluna <= 7:
+                return coluna - 1
             else:
                 print "Valor da coluna fora do intervalo!"
         except ValueError:

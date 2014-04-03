@@ -8,7 +8,9 @@ Created on Mar 25, 2014
 from tabuleiro import Tabuleiro
 from jogador import Jogador
 from jogada import Jogada
+from nodo import Nodo
 import game_input
+import copy 
 
 def main():
     tabuleiro = Tabuleiro(6, 7)
@@ -19,13 +21,17 @@ def main():
     while jogo_nao_acabou:
         print "Vez do jogador", jogador_atual
 
-        coluna = game_input.solicitarColuna()
-        linha = tabuleiro.inserirPeca(coluna, jogador_atual)
+        if jogador_atual is Jogador.COMPUTADOR:
+            jogada = Nodo(copy.deepcopy(tabuleiro)).jogar();
+            tabuleiro.inserirPeca(jogada.coluna, jogador_atual)
+        else:
+            coluna = game_input.solicitarColuna()
+            linha = tabuleiro.inserirPeca(coluna, jogador_atual)
+            jogada = Jogada(linha, coluna, jogador_atual)
         
-        jogada = Jogada(linha, coluna, jogador_atual)
         jogada_vitoriosa = tabuleiro.verificarVitoria(jogada)
 
-        print "linha, coluna: ", str(linha) + "," + str(coluna)
+        print "linha, coluna: ", str(jogada.linha + 1) + "," + str(jogada.coluna +1)
         print "\n", tabuleiro
 
         if jogada_vitoriosa:
