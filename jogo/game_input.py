@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from bcolors import BColors
+
 def solicitarColuna():
     while True:
         try:
@@ -6,9 +8,9 @@ def solicitarColuna():
             if 1 <= coluna <= 7:
                 return coluna - 1
             else:
-                print "Valor da coluna fora do intervalo!"
+                print BColors.WARNING + "Valor da coluna fora do intervalo!" + BColors.ENDC
         except ValueError:
-            print u"Isso nem sequer é um inteiro!".encode('utf-8')
+            print BColors.WARNING+ u"Isso nem sequer é um inteiro!".encode('utf-8') + BColors.ENDC
 
 def solicitarJogadorIniciante():
     while True:
@@ -17,6 +19,6 @@ def solicitarJogadorIniciante():
             if 1 <= jogador <= 2:
                 return jogador
             else:
-                print "Valor deve ser 1 ou 2!"
+                print BColors.WARNING + "Valor deve ser 1 ou 2!" + BColors.ENDC
         except ValueError:
-            print u"Isso nem sequer é um inteiro!".encode('utf-8')
+            print BColors.WARNING + u"Isso nem sequer é um inteiro!".encode('utf-8') + BColors.ENDC
