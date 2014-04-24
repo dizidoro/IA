@@ -35,6 +35,9 @@ class Nodo:
 
         for i in [3,2,4,1,5,0,6]:
             # tabuleiro = copy.deepcopy(self.tabuleiro)
+            if Nodo.tamanho_colunas[i] is 7:
+                continue
+
             tabuleiro = Tabuleiro(0,0,[list(linha) for linha in self.tabuleiro.celulas])
             linha = tabuleiro.inserirPeca(i, Jogador.COMPUTADOR)
             if linha is None:
